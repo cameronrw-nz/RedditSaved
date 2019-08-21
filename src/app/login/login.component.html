@@ -8,5 +8,5 @@
     name="password"
   />
   <button (click)="onLogon()" type="submit" class="button">Login</button>
-  <div *ngIf="hasError" class="">Password</div>
+  <div *ngIf="isSaveSuccessful === false" class="">Password</div>
 </form>

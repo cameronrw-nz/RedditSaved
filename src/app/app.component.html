@@ -1,11 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="shell">
   <div class="app-bar">
-    <div class="button" (click)="login()">
+    <div class="button right" (click)="login()" *ngIf="!loggedInUserName">
       Login
+    </div>
+    <div *ngIf="loggedInUserName" class="right username">
+      {{ loggedInUserName }}
     </div>
   </div>
   <div class="content">
-    <app-login *ngIf="isLoggingIn"></app-login>
+    <app-login
+      *ngIf="isLoggingIn"
+      (onLoggedIn)="onLoggedIn($event)"
+    ></app-login>
   </div>
 </div>

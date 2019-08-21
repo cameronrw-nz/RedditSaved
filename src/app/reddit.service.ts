@@ -13,24 +13,28 @@ export class RedditService {
     console.log(username);
     console.log(password);
     const wrapper = new Snoowrap({
-      userAgent: "",
-      clientId: "",
-      clientSecret: "",
+      userAgent: "Saved Info/0.1 by Darzolak",
+      clientId: "Y8k5r0IZvt4r7g",
+      clientSecret: "vHf1KZ7ZmSdLi781tmYH2oPOhdA",
       username: username,
       password: password
     });
 
-    let hasError = false;
+    let isSaveSuccesful = false;
     await wrapper
       .getMe()
       .then(value => {
         this.me = value;
+        isSaveSuccesful = true;
       })
       .catch(reason => {
         console.log(reason.message);
-        hasError = true;
       });
 
-    return hasError;
+    return isSaveSuccesful;
+  }
+
+  getloggedOnUserName() {
+    return this.me.name;
   }
 }

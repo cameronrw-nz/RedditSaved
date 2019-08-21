@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { RedditService } from "./reddit.service";
 
 @Component({
   selector: "app-root",
@@ -6,10 +7,17 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "RedditSaved";
-  isLoggingIn = false;
+  isLoggingIn: boolean = false;
+  loggedInUserName: string | undefined;
+
+  constructor(private redditService: RedditService) {}
 
   login() {
     this.isLoggingIn = true;
+  }
+
+  onLoggedIn() {
+    this.isLoggingIn = false;
+    this.loggedInUserName = this.redditService.getloggedOnUserName();
   }
 }

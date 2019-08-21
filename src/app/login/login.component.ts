@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { RedditService } from "../reddit.service";
 
 @Component({
@@ -7,19 +7,24 @@ import { RedditService } from "../reddit.service";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
+  @Output() onLoggedIn = new EventEmitter<void>();
 
-  hasError: boolean;
+  isSaveSuccessful: boolean = undefined;
+  password: string;
+  username: string;
 
   constructor(private redditService: RedditService) {}
 
   ngOnInit() {}
 
   async onLogon() {
-    this.hasError = await this.redditService.logon(
+    this.isSaveSuccessful = await this.redditService.logon(
       this.username,
       this.password
     );
+
+    if (this.isSaveSuccessful) {
+      this.onLoggedIn.emit();
+    }
   }
 }

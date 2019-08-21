@@ -8,9 +8,15 @@
     background-color: lightblue;
     position: relative;
 
-    .button {
+    .right {
       position: absolute;
       right: 100px;
+    }
+
+    .username {
+      color: #385152;
+      margin-top: 20px;
+      font-size: 30px;
     }
   }
 
