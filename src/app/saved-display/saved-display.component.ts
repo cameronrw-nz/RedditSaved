@@ -10,7 +10,6 @@ import { IRedditSavedFilter } from "../interfaces/IRedditSavedFilter";
 })
 export class SavedDisplayComponent implements OnInit {
   @Input() isShowingFilter: boolean;
-  openIcon = require("../icons/open.svg");
   items: IRedditSaved[] = [];
   display: IRedditSaved[] = [];
   filter: IRedditSavedFilter;

@@ -7,7 +7,6 @@ import { RedditService } from "./reddit.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  filterIcon = require("./icons/filter.svg");
   isLoggingIn: boolean = false;
   loggedInUserName: string | undefined;
   isShowingFilter: boolean = false;

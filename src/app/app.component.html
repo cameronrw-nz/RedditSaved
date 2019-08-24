@@ -1,7 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="shell">
   <div class="app-bar">
-    <img [src]="filterIcon" class="left" (click)="toggleFilter()" />
+    <svg
+      class="left"
+      (click)="toggleFilter()"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path d="M1 0h22l-9 15.094v8.906l-4-3v-5.906z" />
+    </svg>
     <div class="button right" (click)="login()" *ngIf="!loggedInUserName">
       Login
     </div>
@@ -10,10 +19,7 @@
     </div>
   </div>
   <div class="content">
-    <app-login
-      *ngIf="isLoggingIn"
-      (onLoggedIn)="onLoggedIn($event)"
-    ></app-login>
+    <app-login *ngIf="isLoggingIn" (onLoggedIn)="onLoggedIn()"></app-login>
     <app-saved-display
       *ngIf="loggedInUserName"
       [isShowingFilter]="isShowingFilter"
