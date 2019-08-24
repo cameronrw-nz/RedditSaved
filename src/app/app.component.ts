@@ -7,8 +7,10 @@ import { RedditService } from "./reddit.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
+  filterIcon = require("./icons/filter.svg");
   isLoggingIn: boolean = false;
   loggedInUserName: string | undefined;
+  isShowingFilter: boolean = false;
 
   constructor(private redditService: RedditService) {}
 
@@ -19,5 +21,9 @@ export class AppComponent {
   onLoggedIn() {
     this.isLoggingIn = false;
     this.loggedInUserName = this.redditService.getloggedOnUserName();
+  }
+
+  toggleFilter() {
+    this.isShowingFilter = !this.isShowingFilter;
   }
 }

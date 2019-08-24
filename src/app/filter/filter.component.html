@@ -1,0 +1,9 @@
+<div class="filter-items">
+  <div
+    *ngFor="let recipient of subreddits | keyvalue"
+    (click)="selectSubreddit(recipient.key)"
+    class="filter-item"
+  >
+    {{ recipient.key }} --> {{ recipient.value }}
+  </div>
+</div>

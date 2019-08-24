@@ -1,6 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="shell">
   <div class="app-bar">
+    <img [src]="filterIcon" class="left" (click)="toggleFilter()" />
     <div class="button right" (click)="login()" *ngIf="!loggedInUserName">
       Login
     </div>
@@ -13,5 +14,9 @@
       *ngIf="isLoggingIn"
       (onLoggedIn)="onLoggedIn($event)"
     ></app-login>
+    <app-saved-display
+      *ngIf="loggedInUserName"
+      [isShowingFilter]="isShowingFilter"
+    ></app-saved-display>
   </div>
 </div>

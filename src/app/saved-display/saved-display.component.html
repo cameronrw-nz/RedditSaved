@@ -1,0 +1,25 @@
+<div class="saved-display">
+  <app-filter *ngIf="isShowingFilter"></app-filter>
+  <div class="reddit-items">
+    <div *ngFor="let item of display" class="reddit-link">
+      <div class="content">
+        <div class="header">
+          <div class="header-text">
+            {{ item.name }}
+          </div>
+          <a [href]="item.link">
+            <img class="open-icon" [src]="openIcon" />
+          </a>
+        </div>
+        <div class="footer">
+          <span class="subreddit">
+            {{ item.subreddit }}
+          </span>
+          <span class="date">
+            {{ item.date | date }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
