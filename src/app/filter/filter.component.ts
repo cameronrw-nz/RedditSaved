@@ -14,6 +14,9 @@ export class FilterComponent implements OnInit {
   constructor(private redditService: RedditService) {
     this.setSubreddits(this.redditService.items.getValue());
     this.selectedSubreddits = redditService.filter.getValue().subreddits;
+    this.redditService.filter.subscribe(
+      filter => (this.selectedSubreddits = filter.subreddits)
+    );
     this.redditService.items.subscribe(items => this.setSubreddits(items));
   }
 

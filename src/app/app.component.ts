@@ -36,4 +36,8 @@ export class AppComponent {
   toggleFilter() {
     this.isShowingFilter = !this.isShowingFilter;
   }
+
+  clearSelectedSubreddits() {
+    this.redditService.updateFilteredSubreddits([]);
+  }
 }
