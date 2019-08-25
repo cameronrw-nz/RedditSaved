@@ -9,9 +9,20 @@ import { RedditService } from "./reddit.service";
 export class AppComponent {
   isLoggingIn: boolean = false;
   loggedInUserName: string | undefined;
-  isShowingFilter: boolean = false;
+  isShowingFilter: boolean;
+  selectedSubreddits: string[];
+  numberOfSubreddits: number;
 
-  constructor(private redditService: RedditService) {}
+  constructor(private redditService: RedditService) {
+    this.isShowingFilter = window.innerWidth > 700;
+    this.redditService.filter.subscribe(
+      filter => (this.selectedSubreddits = filter.subreddits)
+    );
+    this.redditService.numberOfSubreddits.subscribe(numberOfSubreddits => {
+      this.numberOfSubreddits = numberOfSubreddits;
+      console.log(numberOfSubreddits);
+    });
+  }
 
   login() {
     this.isLoggingIn = true;

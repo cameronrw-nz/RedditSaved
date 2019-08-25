@@ -8,17 +8,26 @@ import { IRedditSaved } from "../interfaces/IRedditSaved";
   styleUrls: ["./filter.component.scss"]
 })
 export class FilterComponent implements OnInit {
+  selectedSubreddits: string[] = [];
   subreddits: Map<string, number> = new Map<string, number>();
 
   constructor(private redditService: RedditService) {
     this.setSubreddits(this.redditService.items.getValue());
+    this.selectedSubreddits = redditService.filter.getValue().subreddits;
     this.redditService.items.subscribe(items => this.setSubreddits(items));
   }
 
   ngOnInit() {}
 
   selectSubreddit(subreddit: string) {
-    this.redditService.updateFilteredSubreddits(subreddit);
+    if (this.selectedSubreddits.includes(subreddit)) {
+      this.selectedSubreddits = this.selectedSubreddits.filter(
+        id => id !== subreddit
+      );
+    } else {
+      this.selectedSubreddits.push(subreddit);
+    }
+    this.redditService.updateFilteredSubreddits(this.selectedSubreddits);
   }
 
   setSubreddits(items: IRedditSaved[]) {

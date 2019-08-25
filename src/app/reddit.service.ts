@@ -15,6 +15,7 @@ export class RedditService {
   filter: BehaviorSubject<IRedditSavedFilter> = new BehaviorSubject<
     IRedditSavedFilter
   >({ subreddits: [] });
+  numberOfSubreddits: Subject<number> = new Subject<number>();
 
   constructor() {}
 
@@ -46,13 +47,17 @@ export class RedditService {
   async getAllRedditItems() {
     let saved = await this.me.getSavedContent();
 
+    let subreddits = [];
+
     let previous = 0;
     while (saved.length !== previous) {
       const tempItems: IRedditSaved[] = [];
-      console.log(saved.length);
 
       saved.forEach(element => {
         if (element as Snoowrap.Submission) {
+          if (!subreddits.includes(element.subreddit_name_prefixed)) {
+            subreddits.push(element.subreddit_name_prefixed);
+          }
           const submission = element as Snoowrap.Submission;
           const baseDate = new Date(0);
           baseDate.setUTCSeconds(element.created_utc);
@@ -68,6 +73,7 @@ export class RedditService {
       });
 
       this.items.next(tempItems);
+      this.numberOfSubreddits.next(subreddits.length);
 
       previous = saved.length;
 
@@ -75,13 +81,9 @@ export class RedditService {
     }
   }
 
-  updateFilteredSubreddits(subreddit: string) {
+  updateFilteredSubreddits(subreddits: string[]) {
     const filter = this.filter.getValue();
-    if (filter.subreddits.includes(subreddit)) {
-      filter.subreddits = filter.subreddits.filter(id => id !== subreddit);
-    } else {
-      filter.subreddits.push(subreddit);
-    }
+    filter.subreddits = subreddits;
     this.filter.next(filter);
   }
 }

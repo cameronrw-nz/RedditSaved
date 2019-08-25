@@ -11,26 +11,43 @@
     position: absolute;
     z-index: 1;
 
+    @media only screen and (max-width: 700px) {
+      height: 60px;
+    }
+
     .left {
       position: absolute;
       display: none;
       left: 5%;
       margin-top: 25px;
 
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 700px) {
         display: block;
+        margin-top: 17px;
       }
     }
 
     .right {
       position: absolute;
       right: 5%;
+
+      &.button {
+        @media only screen and (max-width: 700px) {
+          margin-top: 8px;
+          font-size: 25px;
+        }
+      }
     }
 
     .username {
       color: #385152;
       margin-top: 20px;
       font-size: 30px;
+
+      @media only screen and (max-width: 700px) {
+        margin-top: 12px;
+        font-size: 25px;
+      }
     }
   }
 
@@ -41,11 +58,12 @@
   }
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 700px) {
   .shell {
     .content {
       width: 100%;
       margin-left: 0px;
+      padding-top: 60px;
     }
   }
 }
