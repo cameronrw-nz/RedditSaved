@@ -52,6 +52,7 @@
 
       .header-text {
         flex: 1 1 auto;
+        font-size: 17px;
       }
 
       .open-icon {
@@ -67,6 +68,7 @@
 
     .footer {
       display: flex;
+      font-size: 13px;
       .subreddit {
         justify-self: flex-start;
         flex: 1 1 auto;
