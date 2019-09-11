@@ -29,9 +29,6 @@
         <div class="loading" *ngIf="loggedInUserName && !hasFinishedLoadingSavedPosts">
             <span class="span">.</span><span class="span second">.</span><span class="span third">.</span>
         </div>
-        <div class="button right" (click)="login()" *ngIf="!loggedInUserName">
-            Login
-        </div>
         <div *ngIf="loggedInUserName" class="right username">
             {{ loggedInUserName }}
         </div>

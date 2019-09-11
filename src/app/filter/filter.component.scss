@@ -1,7 +1,8 @@
 .filter-items {
-  overflow: auto;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   height: 100%;
+  max-width: 300px;
   background-color: #cde3ea;
 
   @media only screen and (max-width: 700px) {

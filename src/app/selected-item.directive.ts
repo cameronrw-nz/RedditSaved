@@ -1,19 +1,19 @@
-import { Directive, ElementRef, Input } from "@angular/core";
+import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: "[appSelectedItem]"
+    selector: '[appSelectedItem]'
 })
 export class SelectedItemDirective {
-  @Input() isSelected: boolean;
+    @Input() isSelected: boolean;
 
-  constructor(private element: ElementRef) {}
+    constructor(private element: ElementRef) { }
 
-  ngOnChanges() {
-    if (this.isSelected) {
-      this.element.nativeElement.style.backgroundColor =
-        "rgb(65.9%, 96%, 65.9%)";
-    } else {
-      this.element.nativeElement.style.backgroundColor = "inherit";
+    ngOnChanges() {
+        if (this.isSelected) {
+            this.element.nativeElement.style.backgroundColor =
+                'rgb(65.9%, 96%, 65.9%)';
+        } else {
+            this.element.nativeElement.style.backgroundColor = 'unset';
+        }
     }
-  }
 }

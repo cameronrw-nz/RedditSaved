@@ -7,7 +7,7 @@ import { RedditService } from './reddit.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    isLoggingIn = false;
+    isLoggingIn = true;
     loggedInUserName: string | undefined;
     isShowingFilter: boolean;
     selectedSubreddits: string[];
@@ -25,10 +25,6 @@ export class AppComponent {
         this.redditService.hasFinishedLoadingSavedPosts.subscribe(hasFinishedLoadingSavedPosts =>
             this.hasFinishedLoadingSavedPosts = hasFinishedLoadingSavedPosts
         );
-    }
-
-    login() {
-        this.isLoggingIn = true;
     }
 
     onLoggedIn() {
