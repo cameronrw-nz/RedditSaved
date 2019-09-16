@@ -33,6 +33,10 @@
       .clear-icon {
         margin-top: 2px;
         margin-left: 4px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       @media only screen and (max-width: 700px) {
@@ -64,8 +68,23 @@
       color: #385152;
       margin-top: 20px;
       font-size: 30px;
+      display: flex;
+
+      svg {
+        margin-left: 8px;
+        margin-top: 8px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
 
       @media only screen and (max-width: 700px) {
+        svg {
+          margin-left: 6px;
+          margin-top: 4px;
+        }
+
         margin-top: 12px;
         font-size: 25px;
       }
@@ -90,44 +109,52 @@
 }
 
 @keyframes blink {
-    0% {
-        opacity: .2;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        opacity: .2;
-    }
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
 
+.refresh-icon {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 30px;
+
+  :first-child:hover {
+    cursor: pointer;
+  }
+}
 
 .loading {
-    font-size: 40px;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    top: -15px;
-    
-    @media only screen and (max-width: 700px) {
-        top: -25px;
-    }  
-    
-    .span {
-        font-size: 60px;
-        animation-name: blink;
-        animation-duration: 1.4s;
-        animation-iteration-count: infinite;
-        animation-fill-mode: both;
-    }
-    
-    .second {
-        animation-delay: .2s;
-    }
-    
-    .third {
-        animation-delay: .4s;
-    }
-    
-    
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: -15px;
+
+  @media only screen and (max-width: 700px) {
+    top: -25px;
+  }
+
+  .span {
+    font-size: 60px;
+    animation-name: blink;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  .second {
+    animation-delay: 0.2s;
+  }
+
+  .third {
+    animation-delay: 0.4s;
+  }
 }

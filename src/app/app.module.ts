@@ -11,9 +11,10 @@ import { FilterComponent } from './filter/filter.component';
 import { SelectedItemDirective } from './selected-item.directive';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HideActionsDirective } from './hide-actions.directive';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SelectedItemDirective],
+  declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SelectedItemDirective, HideActionsDirective],
   imports: [BrowserModule, HttpClientModule, FormsModule, CommonModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [],
   bootstrap: [AppComponent]

@@ -43,17 +43,28 @@ export class RedditService {
     return isSaveSuccesful;
   }
 
+  logout() {
+    this.items.next([]);
+    this.me = undefined;
+    this.wrapper = undefined;
+    this.filter.next({ subreddits: [] });
+    this.numberOfSubreddits.next(undefined);
+    this.hasFinishedLoadingSavedPosts.next(true);
+  }
+
   getloggedOnUserName() {
     return this.me.name;
   }
 
   async getAllRedditItems() {
+    this.hasFinishedLoadingSavedPosts.next(false);
+    this.clearInfo();
     let saved = await this.me.getSavedContent();
 
     const subreddits = [];
 
     let previous = 0;
-    while (saved.length !== previous) {
+    while (saved.length !== previous && this.me !== undefined) {
       const tempItems: IRedditSaved[] = [];
 
       saved.forEach(element => {
@@ -94,13 +105,18 @@ export class RedditService {
 
   async unsavePosts(postIds: string[]) {
     this.hasFinishedLoadingSavedPosts.next(false);
-    this.items.next([]);
-    this.numberOfSubreddits.next(0);
+    this.clearInfo();
     for (let id of postIds) {
       let x = this.wrapper.getSubmission(id);
       x.unsave();
     }
 
     this.getAllRedditItems();
+  }
+
+  clearInfo() {
+    this.items.next([]);
+    this.numberOfSubreddits.next(0);
+    this.filter.next({ subreddits: [] });
   }
 }

@@ -1,6 +1,10 @@
 <div class="saved-display">
   <app-filter *ngIf="isShowingFilter"></app-filter>
-  <div class="items-container">
+  <div
+    class="items-container"
+    appHideActions
+    [isShowing]="selectedIds.length > 0"
+  >
     <div class="reddit-items">
       <div
         *ngFor="let item of display"
@@ -41,9 +45,26 @@
         </div>
       </div>
     </div>
-    <div class="items-actions">
+    <div *ngIf="selectedIds.length > 0" class="items-actions">
       <div class="selected">
-        {{ selectedIds.length }}/{{ display.length }} Selected
+        {{ selectedIds.length
+        }}<span class="secondary-text">/{{ display.length }}</span> Selected
+        <div
+          *ngIf="selectedIds.length > 0"
+          class="clear-icon"
+          (click)="clearSelectedItems()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"
+            />
+          </svg>
+        </div>
       </div>
       <button (click)="unsavePosts()" class="button">
         Clear

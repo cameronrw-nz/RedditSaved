@@ -56,4 +56,8 @@ export class SavedDisplayComponent implements OnInit {
   unsavePosts() {
     this.redditService.unsavePosts(this.selectedIds);
   }
+
+  clearSelectedItems() {
+    this.selectedIds = [];
+  }
 }

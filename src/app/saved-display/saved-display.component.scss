@@ -109,6 +109,21 @@
     font-size: 20px;
     flex: 1 1 auto;
     margin-top: 27px;
+    display: flex;
+
+    .secondary-text {
+      font-size: 14px;
+      margin-top: 6px;
+      margin-right: 5px;
+    }
+
+    .clear-icon {
+      margin-left: 4px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   .button {
