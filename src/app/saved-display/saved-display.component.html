@@ -1,34 +1,53 @@
 <div class="saved-display">
-    <app-filter *ngIf="isShowingFilter"></app-filter>
-    <div class="items-container">
-        <div class="reddit-items">
-            <div *ngFor="let item of display" class="reddit-link" (click)="selectPost(item.id)">
-                <div class="content" appSelectedItem [isSelected]="selectedIds.includes(item.id)">
-                    <div class="header">
-                        <div class="header-text">
-                            {{ item.name }}
-                        </div>
-                        <a [href]="item.link">
-                            <svg class="open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="footer">
-                        <span class="subreddit">
-                            {{ item.subreddit }}
-                        </span>
-                        <span class="date">
-                            {{ item.date | date }}
-                        </span>
-                    </div>
-                </div>
+  <app-filter *ngIf="isShowingFilter"></app-filter>
+  <div class="items-container">
+    <div class="reddit-items">
+      <div
+        *ngFor="let item of display"
+        class="reddit-link"
+        (click)="selectPost(item.id)"
+      >
+        <div
+          class="content"
+          appSelectedItem
+          [isSelected]="selectedIds.includes(item.id)"
+        >
+          <div class="header">
+            <div class="header-text">
+              {{ item.name }}
             </div>
-
+            <a [href]="item.link">
+              <svg
+                class="open-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="footer">
+            <span class="subreddit">
+              {{ item.subreddit }}
+            </span>
+            <span class="date">
+              {{ item.date | date }}
+            </span>
+          </div>
         </div>
-        <div class="items-actions">
-        </div>
+      </div>
     </div>
+    <div class="items-actions">
+      <div class="selected">
+        {{ selectedIds.length }}/{{ display.length }} Selected
+      </div>
+      <button class="button">
+        Clear
+      </button>
+    </div>
+  </div>
 </div>

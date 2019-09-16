@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "prebuild": "rmdir /Q /S dist",
+    "build": "ng build --prod --base-href \"https://cameronrw-nz.github.io/RedditSaved/\"",
+    "postbuild": "xcopy /s dist\\RedditSaved dist & rmdir /Q /S dist\\RedditSaved",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
