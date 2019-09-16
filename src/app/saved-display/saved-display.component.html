@@ -45,7 +45,7 @@
       <div class="selected">
         {{ selectedIds.length }}/{{ display.length }} Selected
       </div>
-      <button class="button">
+      <button (click)="unsavePosts()" class="button">
         Clear
       </button>
     </div>

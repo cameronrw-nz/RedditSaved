@@ -18,6 +18,7 @@ export class SavedDisplayComponent implements OnInit {
   constructor(private redditService: RedditService) {
     this.redditService.items.subscribe(items => {
       this.items = items;
+      this.selectedIds = [];
       this.setDisplay(items, this.filter);
     });
 
@@ -50,5 +51,9 @@ export class SavedDisplayComponent implements OnInit {
     } else {
       this.selectedIds.push(selectedId);
     }
+  }
+
+  unsavePosts() {
+    this.redditService.unsavePosts(this.selectedIds);
   }
 }
