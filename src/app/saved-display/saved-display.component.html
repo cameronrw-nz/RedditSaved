@@ -6,6 +6,12 @@
     [isShowing]="selectedIds.length > 0"
   >
     <div class="reddit-items">
+      <input
+        class="search-input"
+        [ngModel]="searchText"
+        (ngModelChange)="onSearchChanged($event)"
+        placeholder="search"
+      />
       <div
         *ngFor="let item of display"
         class="reddit-link"

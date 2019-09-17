@@ -15,7 +15,7 @@ export class RedditService {
   );
   filter: BehaviorSubject<IRedditSavedFilter> = new BehaviorSubject<
     IRedditSavedFilter
-  >({ subreddits: [] });
+  >({ searchText: "", subreddits: [] });
   numberOfSubreddits: Subject<number> = new Subject<number>();
   hasFinishedLoadingSavedPosts: Subject<boolean> = new Subject<boolean>();
 
@@ -47,7 +47,7 @@ export class RedditService {
     this.items.next([]);
     this.me = undefined;
     this.wrapper = undefined;
-    this.filter.next({ subreddits: [] });
+    this.filter.next({ searchText: "", subreddits: [] });
     this.numberOfSubreddits.next(undefined);
     this.hasFinishedLoadingSavedPosts.next(true);
   }
@@ -97,6 +97,12 @@ export class RedditService {
     this.hasFinishedLoadingSavedPosts.next(true);
   }
 
+  updateFilteredText(searchText: string) {
+    const filter = this.filter.getValue();
+    filter.searchText = searchText;
+    this.filter.next(filter);
+  }
+
   updateFilteredSubreddits(subreddits: string[]) {
     const filter = this.filter.getValue();
     filter.subreddits = subreddits;
@@ -117,6 +123,6 @@ export class RedditService {
   clearInfo() {
     this.items.next([]);
     this.numberOfSubreddits.next(0);
-    this.filter.next({ subreddits: [] });
+    this.filter.next({ searchText: "", subreddits: [] });
   }
 }

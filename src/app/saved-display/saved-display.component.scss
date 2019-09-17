@@ -132,3 +132,23 @@
     margin-right: 20px;
   }
 }
+
+.search-input {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 20px;
+  height: 30px;
+  border: 1px solid #424242;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0px;
+  text-align: center;
+  font: unset;
+  justify-self: center;
+  align-self: center;
+
+  &:focus {
+    outline: none;
+  }
+}

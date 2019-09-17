@@ -10,9 +10,10 @@ import { IRedditSavedFilter } from "../interfaces/IRedditSavedFilter";
 })
 export class SavedDisplayComponent implements OnInit {
   @Input() isShowingFilter: boolean;
-  items: IRedditSaved[] = [];
   display: IRedditSaved[] = [];
   filter: IRedditSavedFilter;
+  items: IRedditSaved[] = [];
+  searchText: string;
   selectedIds: string[] = [];
 
   constructor(private redditService: RedditService) {
@@ -33,12 +34,22 @@ export class SavedDisplayComponent implements OnInit {
     await this.redditService.getAllRedditItems();
   }
 
-  setDisplay(items: IRedditSaved[], filter: IRedditSavedFilter) {
+  setDisplay(items: IRedditSaved[], filter?: IRedditSavedFilter) {
+    if (!filter) {
+      return;
+    }
+
     this.display = [];
     items.forEach(item => {
       if (
-        filter.subreddits.includes(item.subreddit) ||
-        filter.subreddits.length === 0
+        (filter.subreddits.includes(item.subreddit) ||
+          filter.subreddits.length === 0) &&
+        ((item.subreddit &&
+          item.subreddit
+            .toLowerCase()
+            .includes(filter.searchText.toLowerCase())) ||
+          (item.name &&
+            item.name.toLowerCase().includes(filter.searchText.toLowerCase())))
       ) {
         this.display.push(item);
       }
@@ -59,5 +70,10 @@ export class SavedDisplayComponent implements OnInit {
 
   clearSelectedItems() {
     this.selectedIds = [];
+  }
+
+  onSearchChanged(searchText: string) {
+    this.searchText = searchText;
+    this.redditService.updateFilteredText(searchText);
   }
 }

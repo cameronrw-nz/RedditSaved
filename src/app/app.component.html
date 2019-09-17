@@ -68,10 +68,12 @@
       <span class="span">.</span><span class="span second">.</span
       ><span class="span third">.</span>
     </div>
-    <div class="refresh-icon">
+    <div
+      class="refresh-icon"
+      *ngIf="loggedInUserName && hasFinishedLoadingSavedPosts"
+    >
       <svg
         (click)="refreshPosts()"
-        *ngIf="loggedInUserName && hasFinishedLoadingSavedPosts"
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"

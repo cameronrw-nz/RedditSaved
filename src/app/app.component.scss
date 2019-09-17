@@ -9,6 +9,7 @@
     height: 80px;
     background-color: lightblue;
     position: absolute;
+    display: flex;
     z-index: 1;
 
     @media only screen and (max-width: 700px) {
@@ -16,9 +17,9 @@
     }
 
     .left {
-      position: absolute;
+      flex: 0 0 auto;
       display: flex;
-      left: 30px;
+      margin-left: 30px;
       margin-top: 25px;
 
       .left-text {
@@ -40,7 +41,7 @@
       }
 
       @media only screen and (max-width: 700px) {
-        left: 15px;
+        margin-left: 15px;
 
         .icon {
           display: block;
@@ -55,8 +56,9 @@
     }
 
     .right {
-      position: absolute;
-      right: 30px;
+      flex: 0 0 auto;
+      margin-right: 30px;
+      z-index: 3px;
 
       &.button {
         @media only screen and (max-width: 700px) {
@@ -65,7 +67,7 @@
         }
       }
       @media only screen and (max-width: 700px) {
-        right: 15px;
+        margin-right: 15px;
       }
     }
 
@@ -126,26 +128,24 @@
 }
 
 .refresh-icon {
-  width: 100%;
+  flex: 1 1 auto;
   text-align: center;
-  position: absolute;
-  top: 30px;
+  margin-top: 30px;
 
   :first-child:hover {
     cursor: pointer;
   }
 
   @media only screen and (max-width: 700px) {
-    top: 20px;
+    margin-top: 20px;
   }
 }
 
 .loading {
+  flex: 1 1 auto;
   font-size: 40px;
-  width: 100%;
   text-align: center;
-  position: absolute;
-  top: -15px;
+  margin-top: -15px;
 
   @media only screen and (max-width: 700px) {
     top: -25px;
