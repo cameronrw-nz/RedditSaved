@@ -8,6 +8,7 @@ import { RedditService } from "../reddit.service";
 })
 export class LoginComponent implements OnInit {
   @Output() onLoggedIn = new EventEmitter<void>();
+  @Output() isLoggingIn = new EventEmitter<void>();
 
   isSaveSuccessful: boolean = undefined;
   password: string;
@@ -17,14 +18,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  async onLogon() {
-    this.isSaveSuccessful = await this.redditService.logon(
-      this.username,
-      this.password
-    );
-
-    if (this.isSaveSuccessful) {
-      this.onLoggedIn.emit();
-    }
+  onLogon() {
+    this.isLoggingIn.emit();
+    this.redditService.logon(this.username, this.password).then(result => {
+      this.isSaveSuccessful = result;
+      if (this.isSaveSuccessful) {
+        this.onLoggedIn.emit();
+      }
+    });
   }
 }

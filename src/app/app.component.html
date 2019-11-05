@@ -63,7 +63,9 @@
     </div>
     <div
       class="loading"
-      *ngIf="loggedInUserName && !hasFinishedLoadingSavedPosts"
+      *ngIf="
+        isProcessingLogin || (loggedInUserName && !hasFinishedLoadingSavedPosts)
+      "
     >
       <span class="span">.</span><span class="span second">.</span
       ><span class="span third">.</span>
@@ -101,7 +103,11 @@
     </div>
   </div>
   <div class="content">
-    <app-login *ngIf="isLoggingIn" (onLoggedIn)="onLoggedIn()"></app-login>
+    <app-login
+      *ngIf="isLoggedOut"
+      (onLoggedIn)="onLoggedIn()"
+      (isLoggingIn)="processLoggingIn()"
+    ></app-login>
     <app-saved-display
       *ngIf="loggedInUserName"
       [isShowingFilter]="isShowingFilter"
