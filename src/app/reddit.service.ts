@@ -8,8 +8,8 @@ import { IRedditSavedFilter } from "./interfaces/IRedditSavedFilter";
   providedIn: "root"
 })
 export class RedditService {
-  me: Snoowrap.RedditUser;
-  wrapper: Snoowrap;
+  me: Snoowrap.RedditUser | undefined;
+  wrapper: Snoowrap | undefined;
   items: BehaviorSubject<IRedditSaved[]> = new BehaviorSubject<IRedditSaved[]>(
     []
   );
@@ -48,28 +48,28 @@ export class RedditService {
     this.me = undefined;
     this.wrapper = undefined;
     this.filter.next({ searchText: "", subreddits: [] });
-    this.numberOfSubreddits.next(undefined);
+    this.numberOfSubreddits.complete();
     this.hasFinishedLoadingSavedPosts.next(true);
   }
 
   getloggedOnUserName() {
-    return this.me.name;
+    return this.me?.name;
   }
 
   async getAllRedditItems() {
     this.hasFinishedLoadingSavedPosts.next(false);
     this.clearInfo();
-    let saved = await this.me.getSavedContent();
+    let saved = await this.me?.getSavedContent();
 
-    const subreddits = [];
+    const subreddits: string[] = [];
 
     let previous = 0;
-    while (saved.length !== previous && this.me !== undefined) {
+    while (saved?.length !== previous && this.me !== undefined) {
       const tempItems: IRedditSaved[] = [];
 
-      saved.forEach(element => {
+      saved?.forEach(element => {
         if (element as Snoowrap.Submission) {
-          if (!subreddits.includes(element.subreddit_name_prefixed)) {
+          if (!subreddits?.includes(element.subreddit_name_prefixed)) {
             subreddits.push(element.subreddit_name_prefixed);
           }
           const submission = element as Snoowrap.Submission;
@@ -89,9 +89,9 @@ export class RedditService {
       this.items.next(tempItems);
       this.numberOfSubreddits.next(subreddits.length);
 
-      previous = saved.length;
+      previous = saved?.length || 0;
 
-      saved = await saved.fetchMore({ amount: 50 });
+      saved = await saved?.fetchMore({ amount: 50 });
     }
 
     this.hasFinishedLoadingSavedPosts.next(true);
@@ -113,8 +113,8 @@ export class RedditService {
     this.hasFinishedLoadingSavedPosts.next(false);
     this.clearInfo();
     for (let id of postIds) {
-      let x = this.wrapper.getSubmission(id);
-      x.unsave();
+      let submission = this.wrapper?.getSubmission(id);
+      submission?.unsave();
     }
 
     this.getAllRedditItems();

@@ -4,7 +4,7 @@ import { Directive, Input, ElementRef } from "@angular/core";
   selector: "[appHideActions]"
 })
 export class HideActionsDirective {
-  @Input() isShowing: boolean;
+  @Input() isShowing: boolean = false;
 
   constructor(private element: ElementRef) {}
 

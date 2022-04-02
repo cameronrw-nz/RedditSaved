@@ -9,11 +9,11 @@ import { IRedditSavedFilter } from "../interfaces/IRedditSavedFilter";
   styleUrls: ["./saved-display.component.scss"]
 })
 export class SavedDisplayComponent implements OnInit {
-  @Input() isShowingFilter: boolean;
+  @Input() isShowingFilter: boolean = false;
   display: IRedditSaved[] = [];
-  filter: IRedditSavedFilter;
+  filter: IRedditSavedFilter | undefined;
   items: IRedditSaved[] = [];
-  searchText: string;
+  searchText: string | undefined;
   selectedIds: string[] = [];
 
   constructor(private redditService: RedditService) {

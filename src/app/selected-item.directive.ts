@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
     selector: '[appSelectedItem]'
 })
 export class SelectedItemDirective {
-    @Input() isSelected: boolean;
+    @Input() isSelected: boolean = false;
 
     constructor(private element: ElementRef) { }
 
