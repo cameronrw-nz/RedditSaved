@@ -1,24 +1,23 @@
 {
   "configVersion": 1,
-  "timestamp": 1568680668488,
+  "timestamp": 1650378349852,
   "index": "https://cameronrw-nz.github.io/RedditSaved/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
-        "https://cameronrw-nz.github.io/RedditSaved/3-es5.066bb91429f4f3f375d0.js",
-        "https://cameronrw-nz.github.io/RedditSaved/4-es2015.ec7d360171b08c272151.js",
         "https://cameronrw-nz.github.io/RedditSaved/favicon.ico",
         "https://cameronrw-nz.github.io/RedditSaved/index.html",
-        "https://cameronrw-nz.github.io/RedditSaved/main-es2015.ebecd43193df657a3613.js",
-        "https://cameronrw-nz.github.io/RedditSaved/main-es5.5439023b246ae8994d74.js",
-        "https://cameronrw-nz.github.io/RedditSaved/polyfills-es2015.980a19ea99f0d12928a6.js",
-        "https://cameronrw-nz.github.io/RedditSaved/polyfills-es5.44ff07c36ec0cfb055c0.js",
-        "https://cameronrw-nz.github.io/RedditSaved/runtime-es2015.1ceb59a40e030e299767.js",
-        "https://cameronrw-nz.github.io/RedditSaved/runtime-es5.3cb8de869279c92eded9.js",
-        "https://cameronrw-nz.github.io/RedditSaved/styles.32d9ca5ba0970f23a16a.css"
+        "https://cameronrw-nz.github.io/RedditSaved/main.bbb889a6a8940074.js",
+        "https://cameronrw-nz.github.io/RedditSaved/manifest.webmanifest",
+        "https://cameronrw-nz.github.io/RedditSaved/polyfills.c9ad0d22a6d732f3.js",
+        "https://cameronrw-nz.github.io/RedditSaved/runtime.da8afca45e92c185.js",
+        "https://cameronrw-nz.github.io/RedditSaved/styles.afd66e2f6fa3dfd6.css"
       ],
       "patterns": []
     },
@@ -26,6 +25,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-128x128.png",
         "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-144x144.png",
@@ -41,8 +43,6 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://cameronrw-nz.github.io/RedditSaved/3-es5.066bb91429f4f3f375d0.js": "933f5bc0e24fd1f11bc6280a06b581533f8db52f",
-    "https://cameronrw-nz.github.io/RedditSaved/4-es2015.ec7d360171b08c272151.js": "c492ecd3ea3a461eef35d93de8c3178fffe770b2",
     "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -51,15 +51,13 @@
     "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "https://cameronrw-nz.github.io/RedditSaved/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "https://cameronrw-nz.github.io/RedditSaved/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "https://cameronrw-nz.github.io/RedditSaved/index.html": "bed2f1543c5d73eaf30e768dc8807c521696225d",
-    "https://cameronrw-nz.github.io/RedditSaved/main-es2015.ebecd43193df657a3613.js": "ae9942fd8cc293ab4ef447a0c8d3fd809b9eb388",
-    "https://cameronrw-nz.github.io/RedditSaved/main-es5.5439023b246ae8994d74.js": "1bc2499f4309072f5e0e3c834b1bc074f6db7d53",
-    "https://cameronrw-nz.github.io/RedditSaved/polyfills-es2015.980a19ea99f0d12928a6.js": "155b8d9376fdf74db581f599eba412e8eefd85a1",
-    "https://cameronrw-nz.github.io/RedditSaved/polyfills-es5.44ff07c36ec0cfb055c0.js": "68782ff86c7e42d692742e3eb464163d604d6202",
-    "https://cameronrw-nz.github.io/RedditSaved/runtime-es2015.1ceb59a40e030e299767.js": "d8b181559a169d5e6d44f200d61e1f223589cae7",
-    "https://cameronrw-nz.github.io/RedditSaved/runtime-es5.3cb8de869279c92eded9.js": "2a6324c3d5756ac4f34d12cfcde106e150731dd1",
-    "https://cameronrw-nz.github.io/RedditSaved/styles.32d9ca5ba0970f23a16a.css": "4add916b6c86969e950f01cbab6ce5d72f37cd3d"
+    "https://cameronrw-nz.github.io/RedditSaved/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "https://cameronrw-nz.github.io/RedditSaved/index.html": "de71b77ff0534f9d830224bb370fcd16ec4cc0ed",
+    "https://cameronrw-nz.github.io/RedditSaved/main.bbb889a6a8940074.js": "cc48cd3650a55a5c13ef15dabe00e4282cedd118",
+    "https://cameronrw-nz.github.io/RedditSaved/manifest.webmanifest": "fc8ae1f16cce85e0bb510ac74ba3c63598dbbd7a",
+    "https://cameronrw-nz.github.io/RedditSaved/polyfills.c9ad0d22a6d732f3.js": "71b61b917ce2bc17edc5c9b3c532a3a06aca8514",
+    "https://cameronrw-nz.github.io/RedditSaved/runtime.da8afca45e92c185.js": "305d4c54935310238386db0172222cc58cb40208",
+    "https://cameronrw-nz.github.io/RedditSaved/styles.afd66e2f6fa3dfd6.css": "22a6ccfda1b43a671177212fa9912a31101d4cc2"
   },
   "navigationUrls": [
     {
@@ -78,5 +76,6 @@
       "positive": false,
       "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
     }
-  ]
+  ],
+  "navigationRequestStrategy": "performance"
 }
