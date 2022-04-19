@@ -11,8 +11,8 @@ export class AppComponent {
   isProcessingLogin = false;
   loggedInUserName: string | undefined;
   isShowingFilter: boolean;
-  selectedSubreddits: string[];
-  numberOfSubreddits: number;
+  selectedSubreddits: string[] = [];
+  numberOfSubreddits: number | undefined;
   hasFinishedLoadingSavedPosts = false;
 
   constructor(private redditService: RedditService) {

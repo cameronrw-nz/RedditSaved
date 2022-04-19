@@ -1,22 +1,37 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from "@angular/material/button"
+import { MatListModule } from "@angular/material/list"
+import { MatFormFieldModule } from "@angular/material/form-field"
+import { MatIconModule } from "@angular/material/icon"
+import { MatInputModule } from "@angular/material/input"
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
+import { MatSidenavModule } from "@angular/material/sidenav"
+import { MatToolbarModule } from "@angular/material/toolbar"
 
 import { AppComponent } from "./app.component";
-import { LoginComponent } from "./login/login.component";
-import { HttpClientModule } from "@angular/common/http";
-import { SavedDisplayComponent } from "./saved-display/saved-display.component";
 import { FilterComponent } from './filter/filter.component';
+import { LoginComponent } from "./login/login.component";
+import { SavedDisplayCardComponent } from './saved-display-card/saved-display-card.component';
+import { SavedDisplayComponent } from "./saved-display/saved-display.component";
 import { SelectedItemDirective } from './selected-item.directive';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { HideActionsDirective } from './hide-actions.directive';
+import { SavedDisplayFooterComponent } from './saved-display-footer/saved-display-footer.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SelectedItemDirective, HideActionsDirective],
-  imports: [BrowserModule, HttpClientModule, FormsModule, CommonModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
+  declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SelectedItemDirective, SavedDisplayCardComponent, SavedDisplayFooterComponent],
+  imports: [
+    // Basic Modules
+    BrowserModule, HttpClientModule, FormsModule, CommonModule, BrowserAnimationsModule,
+
+    // Material UI modules
+    MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

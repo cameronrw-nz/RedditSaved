@@ -1,0 +1,12 @@
+<mat-toolbar *ngIf="selectedIds.length > 0">
+    {{ selectedIds.length }}/{{ savedRedditItems.length }} Selected
+    <button *ngIf="selectedIds.length > 0" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection.emit()">
+        <mat-icon>clear</mat-icon>
+    </button>
+
+    <span class="example-spacer"></span>
+
+    <button mat-raised-button (click)="unsavePosts()" class="button">
+        Clear
+    </button>
+</mat-toolbar>

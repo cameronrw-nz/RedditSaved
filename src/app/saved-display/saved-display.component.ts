@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { RedditService } from "../reddit.service";
 import { IRedditSaved } from "../interfaces/IRedditSaved";
 import { IRedditSavedFilter } from "../interfaces/IRedditSavedFilter";
+import { MatSelectionListChange } from "@angular/material/list/selection-list";
 
 @Component({
   selector: "app-saved-display",
@@ -9,11 +10,11 @@ import { IRedditSavedFilter } from "../interfaces/IRedditSavedFilter";
   styleUrls: ["./saved-display.component.scss"]
 })
 export class SavedDisplayComponent implements OnInit {
-  @Input() isShowingFilter: boolean;
+  @Input() isShowingFilter: boolean = false;
   display: IRedditSaved[] = [];
-  filter: IRedditSavedFilter;
+  filter: IRedditSavedFilter | undefined;
   items: IRedditSaved[] = [];
-  searchText: string;
+  searchText: string | undefined;
   selectedIds: string[] = [];
 
   constructor(private redditService: RedditService) {
@@ -56,12 +57,15 @@ export class SavedDisplayComponent implements OnInit {
     });
   }
 
-  selectPost(selectedId: string) {
-    if (this.selectedIds.includes(selectedId)) {
-      this.selectedIds = this.selectedIds.filter(id => id !== selectedId);
-    } else {
-      this.selectedIds.push(selectedId);
-    }
+  onSelectionChanged(matSelectionListChange: MatSelectionListChange) {
+    matSelectionListChange.options.forEach(option => {
+      if (option.selected && !this.selectedIds.includes(option.value)) {
+        this.selectedIds.push(option.value);
+      }
+      else {
+        this.selectedIds = this.selectedIds.filter(id => id !== option.value);
+      }
+    })
   }
 
   unsavePosts() {

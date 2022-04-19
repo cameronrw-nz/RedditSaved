@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RedditService } from "../reddit.service";
 import { IRedditSaved } from "../interfaces/IRedditSaved";
+import { MatSelectionListChange } from "@angular/material/list/selection-list";
 
 @Component({
   selector: "app-filter",
@@ -20,7 +21,21 @@ export class FilterComponent implements OnInit {
     this.redditService.items.subscribe(items => this.setSubreddits(items));
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  selectSubreddits(matSelectionListChange: MatSelectionListChange) {
+    matSelectionListChange.options.forEach(option => {
+
+      if (this.selectedSubreddits.includes(option.value)) {
+        this.selectedSubreddits = this.selectedSubreddits.filter(
+          id => id !== option.value
+        );
+      } else {
+        this.selectedSubreddits.push(option.value);
+      }
+    });
+    this.redditService.updateFilteredSubreddits(this.selectedSubreddits);
+  }
 
   selectSubreddit(subreddit: string) {
     if (this.selectedSubreddits.includes(subreddit)) {

@@ -1,80 +1,30 @@
-<div class="saved-display">
-  <app-filter *ngIf="isShowingFilter"></app-filter>
-  <div
-    class="items-container"
-    appHideActions
-    [isShowing]="selectedIds.length > 0"
-  >
+<mat-drawer-container autosize>
+  <mat-drawer opened="{{true}}" mode="side">
+    <app-filter *ngIf="isShowingFilter"></app-filter>
+  </mat-drawer>
+
+  <div class="items-container">
     <div class="reddit-items">
-      <input
-        class="search-input"
-        [ngModel]="searchText"
-        (ngModelChange)="onSearchChanged($event)"
-        placeholder="search"
-      />
-      <div
-        *ngFor="let item of display"
-        class="reddit-link"
-        (click)="selectPost(item.id)"
-      >
-        <div
-          class="content"
-          appSelectedItem
-          [isSelected]="selectedIds.includes(item.id)"
-        >
-          <div class="header">
-            <div class="header-text">
-              {{ item.name }}
-            </div>
-            <a [href]="item.link">
-              <svg
-                class="open-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div class="footer">
-            <span class="subreddit">
-              {{ item.subreddit }}
-            </span>
-            <span class="date">
-              {{ item.date | date }}
-            </span>
-          </div>
-        </div>
-      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput class="search-input" [ngModel]="searchText" (ngModelChange)="onSearchChanged($event)"
+          placeholder="search" />
+        <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChanged('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-selection-list (selectionChange)="onSelectionChanged($event)">
+        <app-saved-display-card *ngFor="let item of display" [item]="item" [isSelected]="selectedIds.includes(item.id)">
+        </app-saved-display-card>
+      </mat-selection-list>
     </div>
-    <div *ngIf="selectedIds.length > 0" class="items-actions">
-      <div class="selected">
-        {{ selectedIds.length
-        }}<span class="secondary-text">/{{ display.length }}</span> Selected
-        <div
-          *ngIf="selectedIds.length > 0"
-          class="clear-icon"
-          (click)="clearSelectedItems()"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"
-            />
-          </svg>
-        </div>
-      </div>
-      <button (click)="unsavePosts()" class="button">
-        Clear
-      </button>
-    </div>
+
+    <app-saved-display-footer [selectedIds]="selectedIds" [savedRedditItems]="display"
+      (clearSelection)="clearSelectedItems()">
+    </app-saved-display-footer>
+
   </div>
-</div>
+</mat-drawer-container>
