@@ -1,14 +1,17 @@
 <form class="login">
-  <h2>Enter Your Reddit Account Info:</h2>
-  <input [(ngModel)]="username" placeholder="username" name="username" />
-  <input
-    [(ngModel)]="password"
-    placeholder="password"
-    type="password"
-    name="password"
-  />
-  <button (click)="onLogon()" type="submit" class="button">Login</button>
-  <div *ngIf="isSaveSuccessful === false" class="">
-    Username or Password is Incorrect.
+  <div class="login-container">
+    <h2>Enter Your Reddit Account Info:</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="username" placeholder="username" name="username" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="password" placeholder="password" type="password" name="password" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onLogon()" type="submit">Login</button>
+    <mat-error *ngIf="isSaveSuccessful === false">
+      Username or Password is Incorrect.
+    </mat-error>
   </div>
 </form>

@@ -1,108 +1,28 @@
 .shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 100%;
   position: relative;
-  height: 100%;
   box-sizing: border-box;
+}
 
-  .app-bar {
-    width: 100%;
-    height: 80px;
-    background-color: lightblue;
-    position: absolute;
-    display: flex;
-    z-index: 1;
+mat-toolbar {
+  flex: 0 0 auto;
+}
 
-    @media only screen and (max-width: 700px) {
-      height: 60px;
-    }
+.content {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
 
-    .left {
-      flex: 0 0 auto;
-      display: flex;
-      margin-left: 30px;
-      margin-top: 25px;
+.user-info {
+  display: contents;
+}
 
-      .left-text {
-        margin-top: 7px;
-        display: flex;
-      }
-
-      .icon {
-        display: none;
-      }
-
-      .clear-icon {
-        margin-top: 2px;
-        margin-left: 4px;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      @media only screen and (max-width: 700px) {
-        margin-left: 15px;
-
-        .icon {
-          display: block;
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-
-        margin-top: 17px;
-      }
-    }
-
-    .right {
-      flex: 0 0 auto;
-      margin-right: 30px;
-      z-index: 3px;
-
-      &.button {
-        @media only screen and (max-width: 700px) {
-          margin-top: 8px;
-          font-size: 25px;
-        }
-      }
-      @media only screen and (max-width: 700px) {
-        margin-right: 15px;
-      }
-    }
-
-    .username {
-      color: #385152;
-      margin-top: 20px;
-      font-size: 30px;
-      display: flex;
-
-      svg {
-        margin-left: 8px;
-        margin-top: 8px;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      @media only screen and (max-width: 700px) {
-        svg {
-          margin-left: 6px;
-          margin-top: 4px;
-        }
-
-        margin-top: 12px;
-        font-size: 25px;
-      }
-    }
-  }
-
-  .content {
-    padding-top: 80px;
-    height: 100%;
-    box-sizing: border-box;
-  }
+button {
+  margin-left: 16px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -110,20 +30,7 @@
     .content {
       width: 100%;
       margin-left: 0px;
-      padding-top: 60px;
     }
-  }
-}
-
-@keyframes blink {
-  0% {
-    opacity: 0.2;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.2;
   }
 }
 
@@ -138,32 +45,5 @@
 
   @media only screen and (max-width: 700px) {
     margin-top: 20px;
-  }
-}
-
-.loading {
-  flex: 1 1 auto;
-  font-size: 40px;
-  text-align: center;
-  margin-top: -15px;
-
-  @media only screen and (max-width: 700px) {
-    top: -25px;
-  }
-
-  .span {
-    font-size: 60px;
-    animation-name: blink;
-    animation-duration: 1.4s;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-  }
-
-  .second {
-    animation-delay: 0.2s;
-  }
-
-  .third {
-    animation-delay: 0.4s;
   }
 }

@@ -3,32 +3,18 @@
   flex-direction: column;
 
   h2 {
-    width: 350px;
-    justify-self: center;
     align-self: center;
   }
 
-  input {
-    border: 1px solid #424242;
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    font: unset;
+  .login-container {
+    align-self: center;
     width: 300px;
-    justify-self: center;
-    align-self: center;
-
-    &:focus {
-      outline: none;
-    }
+    display: flex;
+    flex-direction: column;
   }
+}
 
-  .button {
-    width: 322px;
-    justify-self: center;
-    align-self: center;
-  }
+mat-error {
+  padding-top: 1.34375em;
+  margin: .25em 0;
 }

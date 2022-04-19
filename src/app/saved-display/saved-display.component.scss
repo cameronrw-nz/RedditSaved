@@ -1,17 +1,15 @@
-.saved-display {
-  display: flex;
-  width: 100%;
-  position: relative;
+mat-drawer-container {
   height: 100%;
-  box-sizing: border-box;
 }
 
 .items-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   position: relative;
-  padding-bottom: 80px;
+  overflow: hidden;
 }
 
 .reddit-items {
@@ -31,124 +29,7 @@
   }
 }
 
-.reddit-link {
+mat-form-field {
+  margin-top: 16px;
   width: 100%;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: black;
-  background-color: #d6ecf3;
-  border-radius: 15px;
-
-  &:hover {
-    background-color: #b4e1f0;
-    cursor: pointer;
-  }
-
-  .content {
-    border-radius: 15px;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 10px 0px;
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    .header {
-      overflow: hidden;
-      max-height: 44px;
-      display: flex;
-
-      .header-text {
-        flex: 1 1 auto;
-        font-size: 17px;
-      }
-
-      .open-icon {
-        height: 20px;
-        width: 44px;
-      }
-
-      @media only screen and (max-width: 700px) {
-        max-height: 66px;
-        height: 66px;
-      }
-    }
-
-    .footer {
-      display: flex;
-      font-size: 13px;
-      .subreddit {
-        justify-self: flex-start;
-        flex: 1 1 auto;
-      }
-
-      .date {
-        justify-self: flex-start;
-      }
-    }
-  }
-}
-
-.items-actions {
-  position: absolute;
-  bottom: 0;
-  height: 80px;
-  width: 100%;
-  background-color: white;
-  border-top: 1px solid black;
-  -webkit-box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.23);
-  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.23);
-  display: flex;
-  flex-direction: row;
-
-  .selected {
-    margin-left: 20px;
-    font-size: 20px;
-    flex: 1 1 auto;
-    margin-top: 27px;
-    display: flex;
-
-    .secondary-text {
-      font-size: 14px;
-      margin-top: 6px;
-      margin-right: 5px;
-    }
-
-    .clear-icon {
-      margin-left: 4px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .button {
-    max-height: 51px;
-    flex: 0 0 auto;
-    margin-right: 20px;
-  }
-}
-
-.search-input {
-  margin-top: 10px;
-  width: 100%;
-  font-size: 20px;
-  height: 30px;
-  border: 1px solid #424242;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 10px 0px;
-  text-align: center;
-  font: unset;
-  justify-self: center;
-  align-self: center;
-
-  &:focus {
-    outline: none;
-  }
 }

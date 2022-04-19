@@ -1,11 +1,6 @@
-<div class="filter-items">
-  <div
-    *ngFor="let recipient of subreddits | keyvalue"
-    (click)="selectSubreddit(recipient.key)"
-    class="filter-item"
-    appSelectedItem
-    [isSelected]="selectedSubreddits.includes(recipient.key)"
-  >
+<mat-selection-list (selectionChange)="selectSubreddits($event)">
+  <mat-list-option *ngFor="let recipient of subreddits | keyvalue" value="{{ recipient.key }}"
+    selected="{{ selectedSubreddits.includes(recipient.key) }}">
     {{ recipient.key }} ({{ recipient.value }})
-  </div>
-</div>
+  </mat-list-option>
+</mat-selection-list>
