@@ -367,6 +367,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular/service-worker@npm:~13.3.0":
+  version: 13.3.3
+  resolution: "@angular/service-worker@npm:13.3.3"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": 13.3.3
+    "@angular/core": 13.3.3
+  bin:
+    ngsw-config: ngsw-config.js
+  checksum: f713301f6ff306389e49429a9b35c1efa9849b8c266edbd6a0931bfef70fe6bf9bbf33b969dbdf1ac0f19e7a841753aef45014dc7ab24984825b34ef252223bc
+  languageName: node
+  linkType: hard
+
 "@assemblyscript/loader@npm:^0.10.1":
   version: 0.10.1
   resolution: "@assemblyscript/loader@npm:0.10.1"
@@ -7522,6 +7536,7 @@ __metadata:
     "@angular/platform-browser": ~13.3.0
     "@angular/platform-browser-dynamic": ~13.3.0
     "@angular/router": ~13.3.0
+    "@angular/service-worker": ~13.3.0
     "@types/events": ^3.0.0
     "@types/jasmine": ~3.10.0
     "@types/node": ^12.11.1

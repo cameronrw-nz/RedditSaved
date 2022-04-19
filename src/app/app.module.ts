@@ -21,6 +21,8 @@ import { SavedDisplayCardComponent } from './saved-display-card/saved-display-ca
 import { SavedDisplayComponent } from "./saved-display/saved-display.component";
 import { SelectedItemDirective } from './selected-item.directive';
 import { SavedDisplayFooterComponent } from './saved-display-footer/saved-display-footer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SelectedItemDirective, SavedDisplayCardComponent, SavedDisplayFooterComponent],
@@ -29,7 +31,12 @@ import { SavedDisplayFooterComponent } from './saved-display-footer/saved-displa
     BrowserModule, HttpClientModule, FormsModule, CommonModule, BrowserAnimationsModule,
 
     // Material UI modules
-    MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule
+    MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   providers: [],
   bootstrap: [AppComponent]
