@@ -1,12 +1,17 @@
-<mat-toolbar *ngIf="selectedIds.length > 0">
-    {{ selectedIds.length }}/{{ savedRedditItems.length }} Selected
+<mat-toolbar>
+    <span *ngIf="selectedIds.length > 0">
+        {{ selectedIds.length }}/{{ visibleSavedRedditItems.length }} <span class="selected-label">Selected</span>
+    </span>
     <button *ngIf="selectedIds.length > 0" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection.emit()">
         <mat-icon>clear</mat-icon>
+    </button>
+    <button *ngIf="selectedIds.length > 0" mat-raised-button (click)="unsavePosts()" class="button">
+        Clear
     </button>
 
     <span class="example-spacer"></span>
 
-    <button mat-raised-button (click)="unsavePosts()" class="button">
-        Clear
-    </button>
+    <mat-paginator *ngIf="selectedIds.length === 0 || !isSmallDevice" [length]="allSavedRedditItemsSize" [pageSize]="50"
+        (page)="changePage($event)" aria-label="Select page">
+    </mat-paginator>
 </mat-toolbar>

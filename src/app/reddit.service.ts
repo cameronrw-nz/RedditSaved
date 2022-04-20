@@ -15,11 +15,11 @@ export class RedditService {
   );
   filter: BehaviorSubject<IRedditSavedFilter> = new BehaviorSubject<
     IRedditSavedFilter
-  >({ searchText: "", subreddits: [] });
+  >({ searchText: "", subreddits: [], pageIndex: 0 });
   numberOfSubreddits: Subject<number> = new Subject<number>();
   hasFinishedLoadingSavedPosts: Subject<boolean> = new Subject<boolean>();
 
-  constructor() {}
+  constructor() { }
 
   async logon(username: string, password: string): Promise<boolean> {
     const wrapper = new Snoowrap({
@@ -38,7 +38,7 @@ export class RedditService {
         this.wrapper = wrapper;
         isSaveSuccesful = true;
       })
-      .catch(reason => {});
+      .catch(reason => { });
 
     return isSaveSuccesful;
   }
@@ -47,7 +47,7 @@ export class RedditService {
     this.items.next([]);
     this.me = undefined;
     this.wrapper = undefined;
-    this.filter.next({ searchText: "", subreddits: [] });
+    this.filter.next({ searchText: "", subreddits: [], pageIndex: 0 });
     this.numberOfSubreddits.complete();
     this.hasFinishedLoadingSavedPosts.next(true);
   }
@@ -109,6 +109,12 @@ export class RedditService {
     this.filter.next(filter);
   }
 
+  updatePageIndex(pageIndex: number) {
+    const filter = this.filter.getValue();
+    filter.pageIndex = pageIndex;
+    this.filter.next(filter);
+  }
+
   async unsavePosts(postIds: string[]) {
     this.hasFinishedLoadingSavedPosts.next(false);
     this.clearInfo();
@@ -123,6 +129,6 @@ export class RedditService {
   clearInfo() {
     this.items.next([]);
     this.numberOfSubreddits.next(0);
-    this.filter.next({ searchText: "", subreddits: [] });
+    this.filter.next({ searchText: "", subreddits: [], pageIndex: 0 });
   }
 }

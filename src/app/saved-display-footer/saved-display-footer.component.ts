@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator/paginator';
 import { IRedditSaved } from '../interfaces/IRedditSaved';
 import { RedditService } from '../reddit.service';
 
@@ -9,15 +10,24 @@ import { RedditService } from '../reddit.service';
 })
 export class SavedDisplayFooterComponent implements OnInit {
   @Input() selectedIds: string[] = [];
-  @Input() savedRedditItems: IRedditSaved[] = [];
+  @Input() visibleSavedRedditItems: IRedditSaved[] = [];
   @Output() clearSelection = new EventEmitter<void>();
+  isSmallDevice = window.innerWidth < 500;
 
-  constructor(private redditService: RedditService) { }
+  allSavedRedditItemsSize: number = 0;
+
+  constructor(private redditService: RedditService) {
+    redditService.items.subscribe(items => this.allSavedRedditItemsSize = items.length)
+  }
 
   ngOnInit(): void {
   }
 
   unsavePosts() {
     this.redditService.unsavePosts(this.selectedIds);
+  }
+
+  changePage(pageEvent: PageEvent) {
+    this.redditService.updatePageIndex(pageEvent.pageIndex)
   }
 }

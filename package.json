@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-local": "ng serve --host 0.0.0.0",
     "prebuild": "rmdir /Q /S dist",
     "build": "ng build --prod --base-href \"https://cameronrw-nz.github.io/RedditSaved/\"",
     "postbuild": "xcopy /s dist\\RedditSaved dist & rmdir /Q /S dist\\RedditSaved",

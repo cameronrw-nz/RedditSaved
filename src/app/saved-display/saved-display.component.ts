@@ -20,12 +20,10 @@ export class SavedDisplayComponent implements OnInit {
   constructor(private redditService: RedditService) {
     this.redditService.items.subscribe(items => {
       this.items = items;
-      this.selectedIds = [];
       this.setDisplay(items, this.filter);
     });
 
     this.redditService.filter.subscribe(filter => {
-      this.selectedIds = [];
       this.filter = filter;
       this.setDisplay(this.items, filter);
     });
@@ -40,7 +38,7 @@ export class SavedDisplayComponent implements OnInit {
       return;
     }
 
-    this.display = [];
+    const tempDisplay: IRedditSaved[] = [];
     items.forEach(item => {
       if (
         (filter.subreddits.includes(item.subreddit) ||
@@ -52,9 +50,18 @@ export class SavedDisplayComponent implements OnInit {
           (item.name &&
             item.name.toLowerCase().includes(filter.searchText.toLowerCase())))
       ) {
-        this.display.push(item);
+        tempDisplay.push(item);
       }
     });
+
+    const visisbleItems = tempDisplay.splice(filter.pageIndex * 50, 50);
+
+    const isAllVisisbleItemsShown = visisbleItems.every(item => this.display.findIndex(i => i.id === item.id) >= 0);
+
+    if (!isAllVisisbleItemsShown) {
+      this.display = visisbleItems;
+      this.selectedIds = [];
+    }
   }
 
   onSelectionChanged(matSelectionListChange: MatSelectionListChange) {
