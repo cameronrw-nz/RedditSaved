@@ -1,11 +1,11 @@
 {
-  "name": "reddit-saved",
-  "short_name": "reddit-saved",
+  "name": "RedditSaved",
+  "short_name": "RedditSaved",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "scope": "/",
+  "start_url": "/RedditSaved/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
