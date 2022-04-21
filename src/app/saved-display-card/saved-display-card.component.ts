@@ -7,7 +7,7 @@ import { IRedditSaved } from '../interfaces/IRedditSaved';
   styleUrls: ['./saved-display-card.component.scss']
 })
 export class SavedDisplayCardComponent implements OnInit {
-  @Input() item: IRedditSaved = { date: new Date(), id: Math.random().toString(), link: "https://example.com", name: "This is my saved post", subreddit: "Subreddit Name" };
+  @Input() item: IRedditSaved | undefined = undefined;
   @Input() isSelected: boolean = false;
   constructor() { }
 

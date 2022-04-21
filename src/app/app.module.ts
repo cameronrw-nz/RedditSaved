@@ -20,13 +20,12 @@ import { FilterComponent } from './filter/filter.component';
 import { LoginComponent } from "./login/login.component";
 import { SavedDisplayCardComponent } from './saved-display-card/saved-display-card.component';
 import { SavedDisplayComponent } from "./saved-display/saved-display.component";
-import { SelectedItemDirective } from './selected-item.directive';
 import { SavedDisplayFooterComponent } from './saved-display-footer/saved-display-footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SelectedItemDirective, SavedDisplayCardComponent, SavedDisplayFooterComponent],
+  declarations: [AppComponent, LoginComponent, SavedDisplayComponent, FilterComponent, SavedDisplayCardComponent, SavedDisplayFooterComponent],
   imports: [
     // Basic Modules
     BrowserModule, HttpClientModule, FormsModule, CommonModule, BrowserAnimationsModule,
