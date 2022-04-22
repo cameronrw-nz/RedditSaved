@@ -17,10 +17,10 @@ export class SavedDisplayFooterComponent implements OnInit {
   allSavedRedditItemsSize: number = 0;
 
   constructor(private redditService: RedditService) {
-    redditService.items.subscribe(items => this.allSavedRedditItemsSize = items.length)
   }
 
   ngOnInit(): void {
+    this.redditService.items.subscribe(items => this.allSavedRedditItemsSize = items.length)
   }
 
   unsavePosts() {

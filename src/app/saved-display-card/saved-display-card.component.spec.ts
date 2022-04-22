@@ -2,8 +2,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { formatDate } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatListOptionHarness, MatSelectionListHarness } from '@angular/material/list/testing'
-import { MatIconHarness } from '@angular/material/icon/testing'
+import { MatListOptionHarness } from '@angular/material/list/testing'
 
 import { SavedDisplayCardComponent } from './saved-display-card.component';
 import { MatListModule } from '@angular/material/list';

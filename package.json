@@ -9,7 +9,7 @@
     "build": "ng build --prod --base-href \"https://cameronrw-nz.github.io/RedditSaved/\"",
     "postbuild": "xcopy /s dist\\RedditSaved dist & rmdir /Q /S dist\\RedditSaved",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --browsers=Edge"
   },
   "private": true,
   "dependencies": {
