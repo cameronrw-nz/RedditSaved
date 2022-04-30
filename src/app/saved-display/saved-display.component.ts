@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { RedditService } from "../reddit.service";
 import { IRedditSaved } from "../interfaces/IRedditSaved";
 import { IRedditSavedFilter } from "../interfaces/IRedditSavedFilter";
@@ -11,11 +11,14 @@ import { MatSelectionListChange } from "@angular/material/list/selection-list";
 })
 export class SavedDisplayComponent implements OnInit {
   @Input() isShowingFilter: boolean = false;
+  @Output() toggleFilter = new EventEmitter<void>();
+
   display: IRedditSaved[] = [];
   filter: IRedditSavedFilter | undefined;
   items: IRedditSaved[] = [];
   searchText: string | undefined;
   selectedIds: string[] = [];
+  isSmallDevice = window.innerWidth < 500;
 
   constructor(private redditService: RedditService) {
     this.redditService.items.subscribe(items => {

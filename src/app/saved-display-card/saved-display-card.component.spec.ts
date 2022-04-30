@@ -19,9 +19,7 @@ describe('SavedDisplayCardComponent Tests', () => {
       await TestBed.configureTestingModule({
         declarations: [SavedDisplayCardComponent]
       }).compileComponents();
-    });
 
-    beforeEach(() => {
       fixture = TestBed.createComponent(SavedDisplayCardComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
@@ -106,9 +104,7 @@ describe('SavedDisplayCardComponent Tests', () => {
         declarations: [TestHostComponent, SavedDisplayCardComponent]
       })
         .compileComponents();
-    });
 
-    beforeEach(() => {
       fixture = TestBed.createComponent(TestHostComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();

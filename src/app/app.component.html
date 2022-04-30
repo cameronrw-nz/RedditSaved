@@ -1,6 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="shell">
   <mat-toolbar color="primary">
+    <button data-testid="filter-icon-button" *ngIf="loggedInUserName" mat-icon-button (click)="toggleFilter()"
+      aria-label="Filter">
+      <mat-icon aria-hidden="true">{{isShowingFilter ? "filter_alt_off" : "filter_alt"}}</mat-icon>
+    </button>
+
     Reddit Saved
     <span class="example-spacer"></span>
     <div *ngIf="loggedInUserName" class="user-info">
@@ -12,6 +17,7 @@
   </mat-toolbar>
   <div class="content">
     <app-login *ngIf="isLoggedOut" (onLoggedIn)="onLoggedIn()" (isLoggingIn)="processLoggingIn()"></app-login>
-    <app-saved-display *ngIf="loggedInUserName" [isShowingFilter]="isShowingFilter"></app-saved-display>
+    <app-saved-display *ngIf="loggedInUserName" [isShowingFilter]="isShowingFilter" (toggleFilter)="toggleFilter()">
+    </app-saved-display>
   </div>
 </div>

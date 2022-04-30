@@ -1,5 +1,5 @@
 <mat-drawer-container autosize>
-  <mat-drawer opened="{{true}}" mode="side">
+  <mat-drawer opened="{{isShowingFilter}}" (closed)="toggleFilter.emit()" [mode]="isSmallDevice ? 'over' : 'side'">
     <app-filter *ngIf="isShowingFilter"></app-filter>
   </mat-drawer>
 
