@@ -8,7 +8,6 @@ import { RedditService } from "./reddit.service";
 })
 export class AppComponent {
   isLoggedOut = true;
-  isProcessingLogin = false;
   loggedInUserName: string | undefined;
   isShowingFilter: boolean;
   selectedSubreddits: string[] = [];
@@ -29,13 +28,8 @@ export class AppComponent {
     );
   }
 
-  processLoggingIn() {
-    this.isProcessingLogin = true;
-  }
-
   onLoggedIn() {
     this.isLoggedOut = false;
-    this.isProcessingLogin = false;
     this.loggedInUserName = this.redditService.getloggedOnUserName();
   }
 

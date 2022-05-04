@@ -1,5 +1,5 @@
 <mat-list-option *ngIf="item" value="{{ item.id }}" selected="{{ isSelected }}">
-    <button mat-icon-button matListIcon aria-label="Logout">
+    <button mat-icon-button matListIcon aria-label="Logout" (click)="openLink()">
         <mat-icon aria-hidden="true">launch</mat-icon>
     </button>
     <div mat-line data-testid="saved-item-name">{{ item.name }}</div>

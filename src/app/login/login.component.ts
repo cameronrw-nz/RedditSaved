@@ -8,22 +8,25 @@ import { RedditService } from "../reddit.service";
 })
 export class LoginComponent implements OnInit {
   @Output() onLoggedIn = new EventEmitter<void>();
-  @Output() isLoggingIn = new EventEmitter<void>();
 
+  isLoggingIn: boolean = false;
   isSaveSuccessful: boolean | undefined = undefined;
   password: string | undefined;
   username: string | undefined;
 
-  constructor(private redditService: RedditService) {}
+  constructor(private redditService: RedditService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  onLogon() {
+  onLogon(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
     if (!this.username || !this.password) {
       return;
     }
-    
-    this.isLoggingIn.emit();
+
+    this.isLoggingIn = true;
     this.redditService.logon(this.username, this.password).then(result => {
       this.isSaveSuccessful = result;
       if (this.isSaveSuccessful) {

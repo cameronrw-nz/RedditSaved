@@ -10,8 +10,8 @@ import { RedditService } from '../reddit.service';
 })
 export class SavedDisplayFooterComponent implements OnInit {
   @Input() selectedIds: string[] = [];
-  @Input() visibleSavedRedditItems: IRedditSaved[] = [];
   @Output() clearSelection = new EventEmitter<void>();
+  visibleSavedRedditItems: IRedditSaved[] = [];
   isSmallDevice = window.innerWidth < 500;
 
   allSavedRedditItemsSize: number = 0;
@@ -20,7 +20,8 @@ export class SavedDisplayFooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.redditService.items.subscribe(items => this.allSavedRedditItemsSize = items.length)
+    this.redditService.items.subscribe(items => this.allSavedRedditItemsSize = items.length);
+    this.redditService.filteredItems.subscribe(items => this.visibleSavedRedditItems = items);
   }
 
   unsavePosts() {

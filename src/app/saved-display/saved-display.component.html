@@ -1,5 +1,6 @@
 <mat-drawer-container autosize>
-  <mat-drawer opened="{{isShowingFilter}}" (closed)="toggleFilter.emit()" [mode]="isSmallDevice ? 'over' : 'side'">
+  <mat-drawer opened="{{isShowingFilter}}" (closed)="isShowingFilter ? toggleFilter.emit() : undefined"
+    [mode]="isSmallDevice ? 'over' : 'side'">
     <app-filter *ngIf="isShowingFilter"></app-filter>
   </mat-drawer>
 
@@ -22,8 +23,7 @@
       </mat-selection-list>
     </div>
 
-    <app-saved-display-footer [selectedIds]="selectedIds" [visibleSavedRedditItems]="display"
-      (clearSelection)="clearSelectedItems()">
+    <app-saved-display-footer [selectedIds]="selectedIds" (clearSelection)="clearSelectedItems()">
     </app-saved-display-footer>
 
   </div>

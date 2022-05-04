@@ -13,4 +13,12 @@ export class SavedDisplayCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  openLink() {
+    if (!this.item?.link) {
+      return;
+    }
+
+    window.open(this.item.link)
+  }
 }

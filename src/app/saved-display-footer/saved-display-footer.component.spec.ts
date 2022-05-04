@@ -46,7 +46,10 @@ describe('SavedDisplayFooterComponent', () => {
       window.innerWidth = 1900;
 
       component.selectedIds = ["item1", "item2"];
-      component.allSavedRedditItemsSize = 20
+      component.allSavedRedditItemsSize = 20;
+      redditService = TestBed.inject(RedditService);
+      redditService.items.next(getMockVisibleItems(20));
+      redditService.filteredItems.next(getMockVisibleItems(20));
       fixture.detectChanges();
       loader = TestbedHarnessEnvironment.loader(fixture);
 
@@ -67,6 +70,7 @@ describe('SavedDisplayFooterComponent', () => {
       fixture = TestBed.createComponent(SavedDisplayFooterComponent);
       redditService = TestBed.inject(RedditService);
       redditService.items.next(getMockVisibleItems(20));
+      redditService.filteredItems.next(getMockVisibleItems(20));
       component = fixture.componentInstance;
       component.selectedIds = [];
       fixture.detectChanges();
@@ -88,6 +92,7 @@ describe('SavedDisplayFooterComponent', () => {
       fixture = TestBed.createComponent(SavedDisplayFooterComponent);
       redditService = TestBed.inject(RedditService);
       redditService.items.next(getMockVisibleItems(20));
+      redditService.filteredItems.next(getMockVisibleItems(20));
       component = fixture.componentInstance;
       component.selectedIds = [];
       fixture.detectChanges();
@@ -116,6 +121,28 @@ describe('SavedDisplayFooterComponent', () => {
       // Assert
       const paginators = await loader.getAllHarnesses(MatPaginatorHarness);
       expect(paginators).toHaveSize(0);
+
+      window.innerWidth = tempWindowSize;
+    });
+
+    it('should show the paginator with selected items count when the screen size is large and selected items', async () => {
+      const tempWindowSize = window.innerWidth;
+      window.innerWidth = 1900;
+
+      fixture = TestBed.createComponent(SavedDisplayFooterComponent);
+      redditService = TestBed.inject(RedditService);
+      redditService.items.next(getMockVisibleItems(20));
+      redditService.filteredItems.next(getMockVisibleItems(10));
+      component.selectedIds = ["item1", "item2"];
+      component.allSavedRedditItemsSize = 20
+      fixture.detectChanges();
+      loader = TestbedHarnessEnvironment.loader(fixture);
+
+      // Assert
+      const paginator = await loader.getHarness(MatPaginatorHarness);
+      expect(await paginator.getPageSize()).withContext("Page Size").toBe(50);
+      expect(await paginator.getRangeLabel()).withContext("Range Label Start").toContain("1");
+      expect(await paginator.getRangeLabel()).withContext("Range Label End").toContain("10");
 
       window.innerWidth = tempWindowSize;
     });
