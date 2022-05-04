@@ -12,7 +12,7 @@
 
     <span class="example-spacer"></span>
 
-    <mat-paginator *ngIf="selectedIds.length === 0 || !isSmallDevice" [length]="allSavedRedditItemsSize" [pageSize]="50"
-        (page)="changePage($event)" aria-label="Select page">
+    <mat-paginator *ngIf="selectedIds.length === 0 || !isSmallDevice" [length]="visibleSavedRedditItems.length"
+        [pageSize]="50" (page)="changePage($event)" aria-label="Select page">
     </mat-paginator>
 </mat-toolbar>

@@ -9,7 +9,13 @@
       <mat-label>Password</mat-label>
       <input matInput [(ngModel)]="password" placeholder="password" type="password" name="password" />
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="onLogon()" type="submit">Login</button>
+    <button mat-raised-button color="primary" (click)="onLogon($event)" data-testid="login-button" type="submit"
+      [disabled]="isLoggingIn">
+      <mat-progress-spinner *ngIf="isLoggingIn" data-testid="login-spinner-progress" mode="indeterminate"
+        [diameter]="20" color="accent" inline=true style="display: inline-block;">
+      </mat-progress-spinner>
+      Login
+    </button>
     <mat-error *ngIf="isSaveSuccessful === false">
       Username or Password is Incorrect.
     </mat-error>

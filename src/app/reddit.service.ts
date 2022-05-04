@@ -10,16 +10,43 @@ import { IRedditSavedFilter } from "./interfaces/IRedditSavedFilter";
 export class RedditService {
   me: Snoowrap.RedditUser | undefined;
   wrapper: Snoowrap | undefined;
-  items: BehaviorSubject<IRedditSaved[]> = new BehaviorSubject<IRedditSaved[]>(
-    []
-  );
-  filter: BehaviorSubject<IRedditSavedFilter> = new BehaviorSubject<
-    IRedditSavedFilter
-  >({ searchText: "", subreddits: [], pageIndex: 0 });
+
+  items: BehaviorSubject<IRedditSaved[]> = new BehaviorSubject<IRedditSaved[]>([]);
   numberOfSubreddits: Subject<number> = new Subject<number>();
   hasFinishedLoadingSavedPosts: Subject<boolean> = new Subject<boolean>();
 
-  constructor() { }
+  filteredItems: BehaviorSubject<IRedditSaved[]> = new BehaviorSubject<IRedditSaved[]>([]);
+  filter: BehaviorSubject<IRedditSavedFilter> = new BehaviorSubject<
+    IRedditSavedFilter
+  >({ searchText: "", subreddits: [], pageIndex: 0 });
+
+  constructor() {
+    this.filter.subscribe(() => this.applyFilterToItems());
+  }
+
+  applyFilterToItems() {
+    if (!this.filter.value) {
+      return;
+    }
+
+    const tempDisplay: IRedditSaved[] = [];
+    this.items.value.forEach(item => {
+      if (
+        (this.filter.value.subreddits.includes(item.subreddit) ||
+          this.filter.value.subreddits.length === 0) &&
+        ((item.subreddit &&
+          item.subreddit
+            .toLowerCase()
+            .includes(this.filter.value.searchText.toLowerCase())) ||
+          (item.name &&
+            item.name.toLowerCase().includes(this.filter.value.searchText.toLowerCase())))
+      ) {
+        tempDisplay.push(item);
+      }
+    });
+
+    this.filteredItems.next(tempDisplay);
+  }
 
   async logon(username: string, password: string): Promise<boolean> {
     const wrapper = new Snoowrap({
@@ -45,6 +72,7 @@ export class RedditService {
 
   logout() {
     this.items.next([]);
+    this.filteredItems.next([]);
     this.me = undefined;
     this.wrapper = undefined;
     this.filter.next({ searchText: "", subreddits: [], pageIndex: 0 });
@@ -89,6 +117,8 @@ export class RedditService {
       this.items.next(tempItems);
       this.numberOfSubreddits.next(subreddits.length);
 
+      this.applyFilterToItems();
+
       previous = saved?.length || 0;
 
       saved = await saved?.fetchMore({ amount: 50 });
@@ -128,6 +158,7 @@ export class RedditService {
 
   clearInfo() {
     this.items.next([]);
+    this.filteredItems.next([]);
     this.numberOfSubreddits.next(0);
     this.filter.next({ searchText: "", subreddits: [], pageIndex: 0 });
   }

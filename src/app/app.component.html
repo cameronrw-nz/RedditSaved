@@ -16,7 +16,7 @@
     </div>
   </mat-toolbar>
   <div class="content">
-    <app-login *ngIf="isLoggedOut" (onLoggedIn)="onLoggedIn()" (isLoggingIn)="processLoggingIn()"></app-login>
+    <app-login *ngIf="isLoggedOut" (onLoggedIn)="onLoggedIn()"></app-login>
     <app-saved-display *ngIf="loggedInUserName" [isShowingFilter]="isShowingFilter" (toggleFilter)="toggleFilter()">
     </app-saved-display>
   </div>

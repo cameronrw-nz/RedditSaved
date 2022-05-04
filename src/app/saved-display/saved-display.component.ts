@@ -14,57 +14,27 @@ export class SavedDisplayComponent implements OnInit {
   @Output() toggleFilter = new EventEmitter<void>();
 
   display: IRedditSaved[] = [];
-  filter: IRedditSavedFilter | undefined;
-  items: IRedditSaved[] = [];
   searchText: string | undefined;
   selectedIds: string[] = [];
   isSmallDevice = window.innerWidth < 500;
 
   constructor(private redditService: RedditService) {
-    this.redditService.items.subscribe(items => {
-      this.items = items;
-      this.setDisplay(items, this.filter);
-    });
+    this.redditService.filteredItems.subscribe(items => this.setDisplay(items, this.redditService.filter.value));
 
-    this.redditService.filter.subscribe(filter => {
-      this.filter = filter;
-      this.setDisplay(this.items, filter);
-    });
+    this.redditService.filter.subscribe(filter => this.setDisplay(this.redditService.filteredItems.value, filter))
+  }
+
+  clearSelectedItems() {
+    this.selectedIds = [];
   }
 
   async ngOnInit() {
     await this.redditService.getAllRedditItems();
   }
 
-  setDisplay(items: IRedditSaved[], filter?: IRedditSavedFilter) {
-    if (!filter) {
-      return;
-    }
-
-    const tempDisplay: IRedditSaved[] = [];
-    items.forEach(item => {
-      if (
-        (filter.subreddits.includes(item.subreddit) ||
-          filter.subreddits.length === 0) &&
-        ((item.subreddit &&
-          item.subreddit
-            .toLowerCase()
-            .includes(filter.searchText.toLowerCase())) ||
-          (item.name &&
-            item.name.toLowerCase().includes(filter.searchText.toLowerCase())))
-      ) {
-        tempDisplay.push(item);
-      }
-    });
-
-    const visisbleItems = tempDisplay.splice(filter.pageIndex * 50, 50);
-
-    const isAllVisisbleItemsShown = visisbleItems.every(item => this.display.findIndex(i => i.id === item.id) >= 0);
-
-    if (!isAllVisisbleItemsShown) {
-      this.display = visisbleItems;
-      this.selectedIds = [];
-    }
+  onSearchChanged(searchText: string) {
+    this.searchText = searchText;
+    this.redditService.updateFilteredText(searchText);
   }
 
   onSelectionChanged(matSelectionListChange: MatSelectionListChange) {
@@ -78,16 +48,22 @@ export class SavedDisplayComponent implements OnInit {
     })
   }
 
+  setDisplay(items: IRedditSaved[], filter?: IRedditSavedFilter) {
+    if (!filter) {
+      return;
+    }
+
+    const visisbleItems = items.slice(filter.pageIndex * 50, filter.pageIndex * 50 + 50);
+
+    const isAllVisisbleItemsShown = visisbleItems.every(item => this.display.findIndex(i => i.id === item.id) >= 0);
+
+    if (!isAllVisisbleItemsShown) {
+      this.display = visisbleItems;
+      this.selectedIds = [];
+    }
+  }
+
   unsavePosts() {
     this.redditService.unsavePosts(this.selectedIds);
-  }
-
-  clearSelectedItems() {
-    this.selectedIds = [];
-  }
-
-  onSearchChanged(searchText: string) {
-    this.searchText = searchText;
-    this.redditService.updateFilteredText(searchText);
   }
 }
